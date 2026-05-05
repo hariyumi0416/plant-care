@@ -1,0 +1,117 @@
+[
+  {
+    "id": "pakira",
+    "displayName": "パキラ",
+    "wateringInterval": {
+      "spring": 8,
+      "summer": 6,
+      "autumn": 8,
+      "winter": 12
+    },
+    "light": "レースカーテン越しの明るい場所",
+    "difficulty": "易しい",
+    "description": "幹がぷっくりした人気の観葉植物。乾燥に強く初心者向け。発財樹とも呼ばれる縁起物。",
+    "commonTroubles": ["leaf-yellow", "leaf-tip-brown", "leaf-drop"],
+    "sources": [
+      "https://andplants.jp/blogs/magazine/pachira",
+      "https://greensnap.co.jp/columns/grow_pachira",
+      "https://hitohana.tokyo/note/2992"
+    ]
+  },
+  {
+    "id": "monstera",
+    "displayName": "モンステラ",
+    "wateringInterval": {
+      "spring": 8,
+      "summer": 6,
+      "autumn": 12,
+      "winter": 18
+    },
+    "light": "レースカーテン越しの明るい場所",
+    "difficulty": "易しい",
+    "description": "大きな切れ込みの入った葉が特徴。耐陰性があり、成長が早く育てやすい。",
+    "commonTroubles": ["leaf-yellow", "no-growth", "pests"],
+    "sources": [
+      "https://andplants.jp/blogs/magazine/monstera",
+      "https://greensnap.co.jp/columns/grow_monstera",
+      "https://www.hyponex.co.jp/plantia/plantia-11257/"
+    ]
+  },
+  {
+    "id": "pothos",
+    "displayName": "ポトス",
+    "wateringInterval": {
+      "spring": 7,
+      "summer": 5,
+      "autumn": 9,
+      "winter": 12
+    },
+    "light": "明るい日陰",
+    "difficulty": "易しい",
+    "description": "つる性でどんどん伸びる。耐陰性が高く、初心者の最初の1鉢に最適。",
+    "commonTroubles": ["leaf-yellow", "leaf-tip-brown", "pests"],
+    "sources": [
+      "https://www.hyponex.co.jp/plantia/plantia-14463/",
+      "https://greensnap.co.jp/columns/grow_potos",
+      "https://oneplants.jp/pothos/"
+    ]
+  },
+  {
+    "id": "sansevieria",
+    "displayName": "サンスベリア",
+    "wateringInterval": {
+      "spring": 12,
+      "summer": 8,
+      "autumn": 18,
+      "winter": 30
+    },
+    "light": "明るい日陰〜窓辺の日当たり",
+    "difficulty": "とても易しい",
+    "description": "縦に伸びる剣のような葉が特徴。乾燥に非常に強く、水のあげすぎに最も注意。冬は断水気味に。",
+    "commonTroubles": ["leaf-yellow", "leaf-tip-brown", "no-growth"],
+    "sources": [
+      "https://greensnap.co.jp/columns/grow_sansevieria",
+      "https://www.hyponex.co.jp/plantia/plantia-6915/",
+      "https://apego.jp/blogs/reading/303"
+    ]
+  },
+  {
+    "id": "gazyumaru",
+    "displayName": "ガジュマル",
+    "wateringInterval": {
+      "spring": 6,
+      "summer": 3,
+      "autumn": 8,
+      "winter": 12
+    },
+    "light": "レースカーテン越しの明るい場所",
+    "difficulty": "易しい",
+    "description": "太い幹と気根が独特。多幸の木とも呼ばれる縁起物。樹液が皮膚に触れるとかぶれることがあるので注意。",
+    "commonTroubles": ["leaf-drop", "pests", "leaf-yellow"],
+    "sources": [
+      "https://oneplants.jp/gajyumaru/",
+      "https://greensnap.co.jp/columns/grow_banyan",
+      "https://andplants.jp/blogs/magazine/chinesebanyan-watering"
+    ]
+  },
+  {
+    "id": "cactus",
+    "displayName": "サボテン",
+    "wateringInterval": {
+      "spring": 12,
+      "summer": 18,
+      "autumn": 18,
+      "winter": 35
+    },
+    "light": "日当たりの良い窓辺（夏の直射日光は避ける）",
+    "difficulty": "易しい",
+    "description": "柱サボテン・玉サボテンなどの一般的なサボテン。水のあげすぎに最も注意し、冬はほぼ断水。",
+    "commonTroubles": ["leaf-yellow", "no-growth", "pests"],
+    "sources": [
+      "https://lovegreen.net/library/cactus/p202620/",
+      "https://andplants.jp/blogs/magazine/peruvianapple",
+      "https://greensnap.jp/article/9358",
+      "https://www.hibiyakadan.com/item/LIFESTYLE_Z_0115.html"
+    ]
+  }
+]

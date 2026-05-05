@@ -1,0 +1,465 @@
+/* =========================================
+   CSS変数
+   ========================================= */
+:root {
+  --color-primary:     #4a9e6b;
+  --color-primary-dark: #3a8a5b;
+  --color-bg:          #f0f7f2;
+  --color-card:        #ffffff;
+  --color-border:      #deeee6;
+  --color-text:        #333333;
+  --color-text-sub:    #888888;
+  --radius-card:       12px;
+  --shadow-card:       0 2px 8px rgba(74, 158, 107, 0.12);
+}
+
+/* =========================================
+   ベース
+   ========================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, 'Hiragino Maru Gothic ProN', 'BIZ UDPGothic', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.hidden {
+  display: none;
+}
+
+/* =========================================
+   画面共通
+   ========================================= */
+.screen {
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: var(--color-card);
+  min-height: 100vh;
+}
+
+/* =========================================
+   ヘッダー
+   ========================================= */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background-color: var(--color-primary);
+}
+
+.app-header h1,
+.app-header h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: white;
+}
+
+.app-header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 4px 0;
+  font-family: inherit;
+}
+
+#btn-add-plant {
+  background-color: white;
+  color: var(--color-primary);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+/* =========================================
+   植物一覧
+   ========================================= */
+#plant-list {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#plant-list-empty {
+  text-align: center;
+  color: var(--color-text-sub);
+  margin-top: 48px;
+  font-size: 0.95rem;
+}
+
+/* =========================================
+   水やりカレンダー
+   ========================================= */
+.plant-calendar {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.calendar-title {
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: bold;
+  color: var(--color-text-sub);
+  flex: 1;
+}
+
+.btn-calendar-nav {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--color-text-sub);
+  padding: 0;
+  min-width: 36px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.calendar-day-label {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--color-text-sub);
+  padding: 2px 0 4px;
+}
+
+.calendar-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2px 0;
+  min-height: 36px;
+}
+
+.calendar-cell--empty {
+  pointer-events: none;
+}
+
+.calendar-day-num {
+  font-size: 0.75rem;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.calendar-cell--today .calendar-day-num {
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: bold;
+}
+
+.calendar-drop {
+  font-size: 0.65rem;
+  line-height: 1.2;
+}
+
+.calendar-cell:not(.calendar-cell--empty):not(.calendar-cell--future) {
+  cursor: pointer;
+}
+
+.calendar-cell--future {
+  cursor: default;
+  opacity: 0.35;
+}
+
+/* =========================================
+   植物カード
+   ========================================= */
+.plant-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-card);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-card);
+}
+
+.plant-card-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.plant-card-name {
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+
+.btn-edit {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  color: var(--color-text-sub);
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.plant-card-detail {
+  font-size: 0.875rem;
+  color: var(--color-text-sub);
+  margin-top: 3px;
+}
+
+.plant-card-divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 12px 0;
+}
+
+/* =========================================
+   水やり判定
+   ========================================= */
+.watering-status {
+  font-size: 0.95rem;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.watering-status--early   { color: var(--color-text-sub); }
+.watering-status--ok      { color: var(--color-primary); }
+.watering-status--late    { color: #d4703a; }
+.watering-status--unknown { color: #ccc; }
+
+.btn-watering {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.btn-watering:active {
+  background-color: var(--color-primary-dark);
+}
+
+.watering-note {
+  font-size: 0.75rem;
+  color: #ccc;
+  margin: 4px 0 0;
+}
+
+.btn-trouble {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background-color: white;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.btn-delete {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  background-color: white;
+  color: #c0392b;
+  border: 1px solid #e0a09a;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* =========================================
+   トラブル相談
+   ========================================= */
+#trouble-symptom-list {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-symptom {
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  color: var(--color-text);
+}
+
+.btn-symptom--selected {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+  font-weight: bold;
+}
+
+.trouble-detail-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-border);
+  background-color: #f4faf6;
+}
+
+.trouble-detail-header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--color-primary);
+}
+
+.trouble-section {
+  padding: 14px 16px;
+}
+
+.trouble-section + .trouble-section {
+  border-top: 1px solid var(--color-border);
+}
+
+.trouble-section-title {
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin: 0 0 10px;
+  color: var(--color-text-sub);
+  letter-spacing: 0.05em;
+}
+
+.trouble-section ul {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.trouble-section li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* =========================================
+   フォーム
+   ========================================= */
+form {
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--color-text-sub);
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  background-color: white;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.btn-primary {
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: inherit;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-primary:active {
+  background-color: var(--color-primary-dark);
+}
+
+/* =========================================
+   データ管理
+   ========================================= */
+#data-management {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  margin-top: 8px;
+  border-top: 1px solid var(--color-border);
+}
+
+#data-management button,
+.btn-import-label {
+  display: block;
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  background-color: white;
+  color: var(--color-text-sub);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#input-import {
+  display: none;
+}

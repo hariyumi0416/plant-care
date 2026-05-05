@@ -1,0 +1,17 @@
+{
+  "name": "plant-care",
+  "short_name": "plant-care",
+  "description": "観葉植物のお世話サポートアプリ",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f0f7f2",
+  "theme_color": "#4a9e6b",
+  "icons": [
+    {
+      "src": "assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

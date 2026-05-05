@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>plant-care</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4a9e6b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="plant-care">
+  <link rel="apple-touch-icon" href="assets/icons/icon.svg">
+</head>
+<body>
+  <main id="app">
+
+    <!-- 一覧画面 -->
+    <section id="screen-list" class="screen">
+      <header class="app-header">
+        <h1>🌱 わたしの植物</h1>
+        <button id="btn-add-plant">+ 追加</button>
+      </header>
+      <div id="plant-list"></div>
+      <p id="plant-list-empty" class="hidden">まだ植物が登録されていません</p>
+      <div id="data-management">
+        <button id="btn-export">バックアップを保存</button>
+        <label class="btn-import-label" for="input-import">
+          バックアップから復元
+          <input type="file" id="input-import" accept=".json">
+        </label>
+      </div>
+    </section>
+
+    <!-- トラブル相談画面 -->
+    <section id="screen-trouble" class="screen hidden">
+      <header class="app-header">
+        <button id="btn-back-from-trouble">← 戻る</button>
+        <h2 id="trouble-plant-name"></h2>
+      </header>
+      <div id="trouble-symptom-list"></div>
+      <div id="trouble-detail" class="hidden">
+        <div class="trouble-detail-header">
+          <h3 id="trouble-detail-symptom"></h3>
+        </div>
+        <div class="trouble-section">
+          <p class="trouble-section-title">考えられる原因</p>
+          <ul id="trouble-detail-causes"></ul>
+        </div>
+        <div class="trouble-section">
+          <p class="trouble-section-title">対処法</p>
+          <ul id="trouble-detail-actions"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 追加フォーム画面 -->
+    <section id="screen-add" class="screen hidden">
+      <header class="app-header">
+        <button id="btn-back-from-add">← 戻る</button>
+        <h2 id="screen-add-title">植物を追加</h2>
+      </header>
+      <form id="form-add-plant">
+        <div class="form-group">
+          <label for="input-species">種類</label>
+          <select id="input-species" required>
+            <option value="">選んでください</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="input-nickname">ニックネーム</label>
+          <input type="text" id="input-nickname" placeholder="例: パッキー" required>
+        </div>
+        <div class="form-group">
+          <label for="input-placed-at">置き場所</label>
+          <input type="text" id="input-placed-at" placeholder="例: リビング東窓" required>
+        </div>
+        <div class="form-group">
+          <label for="input-added-date">迎えた日</label>
+          <input type="date" id="input-added-date" required>
+        </div>
+        <button type="submit" id="btn-submit-plant" class="btn-primary">登録する</button>
+      </form>
+    </section>
+
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/watering.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

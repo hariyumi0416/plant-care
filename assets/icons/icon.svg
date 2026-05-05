@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <circle cx="256" cy="256" r="256" fill="#4a9e6b"/>
+  <!-- 鉢 -->
+  <rect x="186" y="348" width="140" height="76" rx="10" fill="#f0f7f2"/>
+  <rect x="174" y="332" width="164" height="24" rx="8" fill="#f0f7f2"/>
+  <!-- 茎 -->
+  <line x1="256" y1="336" x2="256" y2="240" stroke="white" stroke-width="14" stroke-linecap="round"/>
+  <!-- 左の葉 -->
+  <path d="M256 286 C240 264 200 240 174 196 C204 200 248 248 256 286Z" fill="white"/>
+  <!-- 右の葉 -->
+  <path d="M256 266 C272 244 312 220 338 176 C308 180 264 228 256 266Z" fill="white"/>
+</svg>
