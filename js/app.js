@@ -8,15 +8,17 @@ const calendarDisplayMonths = new Map(); // plant.id → { year, month }（month
 document.addEventListener('DOMContentLoaded', async function () {
   console.log('plant-care 起動');
 
-  plantData = await loadPlantData();
-  troubleData = await loadTroubleData();
-  userPlants = loadPlants();
-
   const today = new Date().toISOString().split('T')[0];
 
-  renderSpeciesSelect(plantData);
-  renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
-  showScreen('screen-list');
+  // ===== イベントリスナーをすべて先に登録（await より前）=====
+
+  // 設定ボタン
+  document.getElementById('btn-settings').addEventListener('click', function () {
+    showSettingsScreen(function () {
+      userPlants = loadPlants();
+      renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+    });
+  });
 
   // 植物追加ボタン
   document.getElementById('btn-add-plant').addEventListener('click', function () {
@@ -187,8 +189,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     const reader = new FileReader();
-    reader.onload = function (e) {
-      const success = importData(e.target.result);
+    reader.onload = async function (e) {
+      const success = await importData(e.target.result);
       if (success) {
         userPlants = loadPlants();
         calendarDisplayMonths.clear();
@@ -199,4 +201,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     };
     reader.readAsText(file);
   });
+
+  // ===== 非同期初期化（イベントリスナー登録後に実行）=====
+  plantData = await loadPlantData();
+  troubleData = await loadTroubleData();
+  await initStorage();
+  userPlants = loadPlants();
+
+  renderSpeciesSelect(plantData);
+  renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+  showScreen('screen-list');
 });
