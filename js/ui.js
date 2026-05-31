@@ -3,8 +3,10 @@ function updateSyncStatus() {
   const now = new Date();
   const hh = String(now.getHours()).padStart(2, '0');
   const mm = String(now.getMinutes()).padStart(2, '0');
-  document.getElementById('sync-status').textContent =
-    'グループ: …' + id.slice(-4) + ' ・ 最終更新 ' + hh + ':' + mm;
+  const el = document.getElementById('sync-status');
+  if (el) {
+    el.textContent = 'グループ: …' + id.slice(-4) + ' ・ 最終更新 ' + hh + ':' + mm;
+  }
 }
 
 function formatDateJa(dateStr) {
@@ -242,6 +244,7 @@ function showSettingsScreen(onJoined) {
   document.getElementById('copy-feedback').classList.add('hidden');
 
   document.getElementById('btn-back-from-settings').onclick = function () {
+    updateSyncStatus();
     showScreen('screen-list');
   };
 

@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     showSettingsScreen(function () {
       userPlants = loadPlants();
       renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+      updateSyncStatus();
     });
   });
 
@@ -63,6 +64,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     userPlants = loadPlants();
     renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+    updateSyncStatus();
 
     document.getElementById('form-add-plant').reset();
     showScreen('screen-list');
@@ -91,6 +93,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       recordWatering(plantId, today);
       userPlants = loadPlants();
       renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+      updateSyncStatus();
       return;
     }
 
@@ -103,6 +106,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       calendarDisplayMonths.delete(plantId);
       userPlants = loadPlants();
       renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+      updateSyncStatus();
       return;
     }
 
@@ -144,6 +148,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
       userPlants = loadPlants();
       renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+      updateSyncStatus();
       return;
     }
 
@@ -195,6 +200,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         userPlants = loadPlants();
         calendarDisplayMonths.clear();
         renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+        updateSyncStatus();
         alert('復元が完了しました。');
       }
       event.target.value = '';
