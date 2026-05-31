@@ -205,10 +205,14 @@ document.addEventListener('DOMContentLoaded', async function () {
   // ===== 非同期初期化（イベントリスナー登録後に実行）=====
   plantData = await loadPlantData();
   troubleData = await loadTroubleData();
-  await initStorage();
-  userPlants = loadPlants();
+
+  // onSnapshot リスナーを開始。データが届くたびにコールバックが呼ばれる
+  initStorage(function () {
+    userPlants = loadPlants();
+    renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+    updateSyncStatus();
+  });
 
   renderSpeciesSelect(plantData);
-  renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
   showScreen('screen-list');
 });

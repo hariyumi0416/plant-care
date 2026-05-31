@@ -1,3 +1,12 @@
+function updateSyncStatus() {
+  const id = getCurrentGroupId();
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2, '0');
+  const mm = String(now.getMinutes()).padStart(2, '0');
+  document.getElementById('sync-status').textContent =
+    'グループ: …' + id.slice(-4) + ' ・ 最終更新 ' + hh + ':' + mm;
+}
+
 function formatDateJa(dateStr) {
   if (!dateStr) return 'まだありません';
   const parts = dateStr.split('-');

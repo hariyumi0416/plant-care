@@ -25,29 +25,40 @@ async function joinGroup(inputId) {
   const cleaned = inputId.trim().toLowerCase();
   if (!cleaned) return false;
   localStorage.setItem(GROUP_ID_KEY, cleaned);
-  await initStorage();
+  _subscribe(); // 新しいグループのリスナーに張り替え
   return true;
 }
 
 // インメモリキャッシュ
 let _plants = [];
+let _unsubscribe = null; // onSnapshot の購読解除関数
+let _onUpdate = null;    // データ更新時に呼ぶコールバック
 
 function _plantsRef() {
   return db.collection('groups').doc(getCurrentGroupId()).collection('plants');
 }
 
-// Firestore から植物データを初回ロードしてキャッシュに格納する
-async function initStorage() {
-  try {
-    _plants = [];
-    const snapshot = await _plantsRef().get();
-    _plants = snapshot.docs.map(function (doc) {
-      return Object.assign({ id: doc.id }, doc.data());
-    });
-  } catch (e) {
-    console.error('Firestore からの初回ロードに失敗しました', e);
-    alert('データの読み込みに失敗しました。ネットワーク接続を確認してください。');
-  }
+// onSnapshot リスナーを張る（初回・グループ切替時の両方で使う）
+function _subscribe() {
+  if (_unsubscribe) { _unsubscribe(); _unsubscribe = null; }
+  _plants = []; // 新グループのデータが届くまで空にして古いデータを残さない
+  _unsubscribe = _plantsRef().onSnapshot(
+    function (snapshot) {
+      _plants = snapshot.docs.map(function (doc) {
+        return Object.assign({ id: doc.id }, doc.data());
+      });
+      if (_onUpdate) _onUpdate();
+    },
+    function (error) {
+      console.error('Firestore listener error:', error);
+    }
+  );
+}
+
+// onSnapshot リスナーを開始する（app.js から呼ぶ、同期）
+function initStorage(onUpdate) {
+  _onUpdate = onUpdate;
+  _subscribe();
 }
 
 // キャッシュをそのまま返す（同期）
