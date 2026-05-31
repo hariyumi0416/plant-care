@@ -1,3 +1,14 @@
+function updateSyncStatus() {
+  const id = getCurrentGroupId();
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2, '0');
+  const mm = String(now.getMinutes()).padStart(2, '0');
+  const el = document.getElementById('sync-status');
+  if (el) {
+    el.textContent = 'グループ: …' + id.slice(-4) + ' ・ 最終更新 ' + hh + ':' + mm;
+  }
+}
+
 function formatDateJa(dateStr) {
   if (!dateStr) return 'まだありません';
   const parts = dateStr.split('-');
@@ -225,6 +236,50 @@ function renderWateringCalendar(plant, today, displayYear, displayMonth) {
 
   container.appendChild(grid);
   return container;
+}
+
+function showSettingsScreen(onJoined) {
+  document.getElementById('display-group-id').textContent = getCurrentGroupId();
+  document.getElementById('input-join-group-id').value = '';
+  document.getElementById('copy-feedback').classList.add('hidden');
+
+  document.getElementById('btn-back-from-settings').onclick = function () {
+    updateSyncStatus();
+    showScreen('screen-list');
+  };
+
+  document.getElementById('btn-copy-group-id').onclick = function () {
+    const groupId = getCurrentGroupId();
+    navigator.clipboard.writeText(groupId).then(function () {
+      const feedback = document.getElementById('copy-feedback');
+      feedback.classList.remove('hidden');
+      setTimeout(function () { feedback.classList.add('hidden'); }, 2000);
+    }).catch(function (e) {
+      console.error('クリップボードへのコピーに失敗しました', e);
+    });
+  };
+
+  document.getElementById('btn-join-group').onclick = async function () {
+    const inputVal = document.getElementById('input-join-group-id').value.trim();
+    if (!inputVal) return;
+
+    const currentId = getCurrentGroupId();
+    const confirmed = confirm(
+      'グループ「' + inputVal + '」に切り替えます。\n' +
+      '今表示している植物は見えなくなります。\n' +
+      '（現在のグループID: ' + currentId + ' ／ 戻れるよう控えておいてください）\n' +
+      'よろしいですか？'
+    );
+    if (!confirmed) return;
+
+    const ok = await joinGroup(inputVal);
+    if (ok) {
+      onJoined();
+      showScreen('screen-list');
+    }
+  };
+
+  showScreen('screen-settings');
 }
 
 function renderSpeciesSelect(plantData) {

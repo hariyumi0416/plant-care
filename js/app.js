@@ -8,15 +8,18 @@ const calendarDisplayMonths = new Map(); // plant.id → { year, month }（month
 document.addEventListener('DOMContentLoaded', async function () {
   console.log('plant-care 起動');
 
-  plantData = await loadPlantData();
-  troubleData = await loadTroubleData();
-  userPlants = loadPlants();
-
   const today = new Date().toISOString().split('T')[0];
 
-  renderSpeciesSelect(plantData);
-  renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
-  showScreen('screen-list');
+  // ===== イベントリスナーをすべて先に登録（await より前）=====
+
+  // 設定ボタン
+  document.getElementById('btn-settings').addEventListener('click', function () {
+    showSettingsScreen(function () {
+      userPlants = loadPlants();
+      renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+      updateSyncStatus();
+    });
+  });
 
   // 植物追加ボタン
   document.getElementById('btn-add-plant').addEventListener('click', function () {
@@ -61,6 +64,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     userPlants = loadPlants();
     renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+    updateSyncStatus();
 
     document.getElementById('form-add-plant').reset();
     showScreen('screen-list');
@@ -89,6 +93,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       recordWatering(plantId, today);
       userPlants = loadPlants();
       renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+      updateSyncStatus();
       return;
     }
 
@@ -101,6 +106,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       calendarDisplayMonths.delete(plantId);
       userPlants = loadPlants();
       renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+      updateSyncStatus();
       return;
     }
 
@@ -142,6 +148,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
       userPlants = loadPlants();
       renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+      updateSyncStatus();
       return;
     }
 
@@ -187,16 +194,31 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     const reader = new FileReader();
-    reader.onload = function (e) {
-      const success = importData(e.target.result);
+    reader.onload = async function (e) {
+      const success = await importData(e.target.result);
       if (success) {
         userPlants = loadPlants();
         calendarDisplayMonths.clear();
         renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+        updateSyncStatus();
         alert('復元が完了しました。');
       }
       event.target.value = '';
     };
     reader.readAsText(file);
   });
+
+  // ===== 非同期初期化（イベントリスナー登録後に実行）=====
+  plantData = await loadPlantData();
+  troubleData = await loadTroubleData();
+
+  // onSnapshot リスナーを開始。データが届くたびにコールバックが呼ばれる
+  initStorage(function () {
+    userPlants = loadPlants();
+    renderPlantList(userPlants, plantData, today, calendarDisplayMonths);
+    updateSyncStatus();
+  });
+
+  renderSpeciesSelect(plantData);
+  showScreen('screen-list');
 });

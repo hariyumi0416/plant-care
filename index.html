@@ -19,8 +19,12 @@
     <section id="screen-list" class="screen">
       <header class="app-header">
         <h1>🌱 わたしの植物</h1>
-        <button id="btn-add-plant">+ 追加</button>
+        <div class="app-header-actions">
+          <button id="btn-settings">⚙️</button>
+          <button id="btn-add-plant">+ 追加</button>
+        </div>
       </header>
+      <p id="sync-status" class="sync-status"></p>
       <div id="plant-list"></div>
       <p id="plant-list-empty" class="hidden">まだ植物が登録されていません</p>
       <div id="data-management">
@@ -50,6 +54,30 @@
         <div class="trouble-section">
           <p class="trouble-section-title">対処法</p>
           <ul id="trouble-detail-actions"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 設定画面 -->
+    <section id="screen-settings" class="screen hidden">
+      <header class="app-header">
+        <button id="btn-back-from-settings">← 戻る</button>
+        <h2>設定</h2>
+      </header>
+      <div class="settings-body">
+        <div class="settings-section">
+          <p class="settings-label">あなたのグループID</p>
+          <div class="settings-group-id-row">
+            <span id="display-group-id" class="settings-group-id-text"></span>
+            <button id="btn-copy-group-id">コピー</button>
+          </div>
+          <span id="copy-feedback" class="settings-copy-feedback hidden">コピーしました</span>
+          <p class="settings-note">このIDを家族に伝えると、同じ植物を一緒に管理できます</p>
+        </div>
+        <div class="settings-section">
+          <p class="settings-label">既存のグループに参加する</p>
+          <input type="text" id="input-join-group-id" placeholder="例: abcd-efgh-jkmn" autocomplete="off">
+          <button id="btn-join-group" class="btn-primary">参加する</button>
         </div>
       </div>
     </section>
@@ -84,6 +112,11 @@
     </section>
 
   </main>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/12.12.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
 
   <script src="js/storage.js"></script>
   <script src="js/watering.js"></script>

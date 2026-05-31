@@ -71,6 +71,12 @@ body {
   font-family: inherit;
 }
 
+.app-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 #btn-add-plant {
   background-color: white;
   color: var(--color-primary);
@@ -78,6 +84,17 @@ body {
   padding: 6px 14px;
   font-size: 0.875rem;
   font-weight: bold;
+}
+
+/* =========================================
+   同期ステータス
+   ========================================= */
+.sync-status {
+  margin: 0;
+  padding: 4px 16px 6px;
+  font-size: 0.72rem;
+  color: var(--color-text-sub);
+  background-color: var(--color-bg);
 }
 
 /* =========================================
@@ -462,4 +479,85 @@ form {
 
 #input-import {
   display: none;
+}
+
+/* =========================================
+   設定画面
+   ========================================= */
+.settings-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.settings-section {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.settings-label {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--color-text-sub);
+  margin: 0;
+}
+
+.settings-group-id-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.settings-group-id-text {
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  color: var(--color-text);
+  flex: 1;
+  word-break: break-all;
+}
+
+.settings-group-id-row button {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  background-color: white;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.settings-copy-feedback {
+  font-size: 0.8rem;
+  color: var(--color-primary);
+}
+
+.settings-note {
+  font-size: 0.8rem;
+  color: var(--color-text-sub);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.settings-section input[type="text"] {
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  background-color: white;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.settings-section input[type="text"]:focus {
+  outline: none;
+  border-color: var(--color-primary);
 }
